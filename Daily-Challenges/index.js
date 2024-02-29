@@ -55,3 +55,10 @@
 // fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 // fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 
+    function fromPairs(arr) {
+      let obj = {};
+      arr.forEach(function(nestArr) {
+        obj[nestArr[0]] = nestArr[1];
+      })
+      return obj
+    }
