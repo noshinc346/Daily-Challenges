@@ -49,3 +49,18 @@ var missingNumber = function(nums) {
     
     return total - arrSum;
     };
+
+// Leetcode 136. Single Number
+//Given a non-empty array of integers nums, every element appears 
+// twice except for one. Find that single one.
+
+var singleNumber = function(nums) {
+    if (nums.length === 0) {
+        return nums[0];
+    }
+    let result = 0;
+    for (let num of nums) {
+        result ^= num;
+    }
+    return result;
+};
