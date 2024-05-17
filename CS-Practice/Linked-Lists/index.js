@@ -293,3 +293,25 @@ class Node {
 
     return left<=right
   }
+
+// Leetcode 9 Palindrome numbers 
+// Given an integer x, return true if x is a palindrome, and false otherwise.
+
+
+const isPalindrome = function(x) {
+  // Negative numbers are not palindromes
+  if (x < 0) {
+      return false;
+  }
+  
+  let reverse = 0;
+  let copy = x;
+  
+  while (copy > 0) {
+      const digit = copy % 10;
+      reverse = reverse * 10 + digit;
+      copy = Math.floor(copy / 10);
+  }
+  
+  return reverse === x;
+};
