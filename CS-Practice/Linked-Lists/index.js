@@ -272,3 +272,24 @@ class Node {
   list.push("GOODBYE");
   list.push("!!!");
   console.log(list);
+
+
+//Leetcode 234 Palindrome linked list 
+// Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+  var isPalindrome = function(head) {
+    const listVals = [];
+    while (head) {
+      listVals.push(head.value)
+      head = head.next
+    }
+
+    let left = 0;
+    let right = listVals.length - 1; 
+    while(left < right && listVals[left] === listVals[right]) {
+      left++
+      right--
+    }
+
+    return left<=right
+  }
