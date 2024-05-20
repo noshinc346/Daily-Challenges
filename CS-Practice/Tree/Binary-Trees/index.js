@@ -91,3 +91,24 @@ var isSame = function (leftroot, rightroot) {
         return isSame(leftroot.left, rightroot.right) && isSame(leftroot.right, rightroot.left);
     return true;
 };
+
+//Leetcode 226 Invert Binary Tree 
+//Given the root of a binary tree, invert the tree, and return its root.
+
+function invertTree(root) {
+    if (root === null) {
+        return null;
+    }
+
+    // Swap the left and right children
+    let temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    // Invert the left subtree
+    invertTree(root.left);
+    // Invert the right subtree
+    invertTree(root.right);
+
+    return root;
+}
