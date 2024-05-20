@@ -20,3 +20,32 @@ function floodFill(image,sr,sc,color) {
     } 
     return image
 }
+
+
+
+var sortedSquares = function(nums) {
+    let res = new Array(nums.length).fill(0);
+    let left = 0;
+    let right = nums.length - 1; 
+
+    if(nums.length === null) {
+        return [];
+    }
+
+    if(nums.length === 1) {
+        return nums = nums[0] ** 2;
+    }
+
+    for(let i = nums.length -1;i >= 0; i--){
+        if(Math.abs(nums[left]) > Math.abs(nums[right])) {
+            res[i] = nums[left] ** 2;
+            left++;
+        }
+        else {
+            res[i] = nums[right] ** 2;
+            right--;
+        }
+    }
+    return res;
+
+};
