@@ -112,3 +112,29 @@ function invertTree(root) {
 
     return root;
 }
+
+// LeetCode 108. Convert Sorted Array to Binary Search Tree
+// Given an integer array nums where the elements are sorted in ascending order, convert it to a 
+// height-balanced binary search tree.
+
+function sortedArrayToBST(nums) {
+    function convertListToBST(left, right) {
+        if (left > right) {
+            return null;
+        }
+
+        // Choose the middle element of the current subarray
+        const mid = Math.floor((left + right) / 2);
+        const node = new TreeNode(nums[mid]);
+
+        // Recursively build the left subtree
+        node.left = convertListToBST(left, mid - 1);
+
+        // Recursively build the right subtree
+        node.right = convertListToBST(mid + 1, right);
+
+        return node;
+    }
+
+    return convertListToBST(0, nums.length - 1);
+}
