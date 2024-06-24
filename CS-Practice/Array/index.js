@@ -88,3 +88,47 @@ var search = function(nums, target) {
 
     return -1;
 };
+
+//Leetcode 153 Finding minimum in a rotated sorted array
+
+function findMin(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        let mid = Math.floor((left + right) / 2);
+
+        // Compare middle element with the rightmost element
+        if (nums[mid] > nums[right]) {
+            // The minimum element must be in the right part
+            left = mid + 1;
+        } else {
+            // The minimum element is in the left part (including mid)
+            right = mid;
+        }
+    }
+
+    // When left == right, we have found the minimum element
+    return nums[left];
+}
+
+// Example usage:
+let nums = [4, 5, 6, 7, 0, 1, 2];
+console.log(findMin(nums)); // Output: 0
+
+
+//26. Remove Duplicates from Sorted Array
+var removeDuplicates = function(nums) {
+    if (nums.length === 0) return 0; // Edge case: empty array
+   
+   let k = 1; // Pointer to track unique elements
+   
+   for (let i = 1; i < nums.length; i++) {
+       if (nums[i] !== nums[k - 1]) {
+           nums[k] = nums[i]; // Place unique element at index k
+           k++; // Increment k to next unique element position
+       }
+   }
+   
+   return k; // k now represents the number of unique elements
+};
