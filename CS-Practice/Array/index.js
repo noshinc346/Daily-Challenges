@@ -132,3 +132,20 @@ var removeDuplicates = function(nums) {
    
    return k; // k now represents the number of unique elements
 };
+
+//Leetcode 121. Best Time to Buy and Sell Stock
+
+    var maxProfit = function(prices) {
+        let buyPrice = prices[0];
+        let profit = 0;
+
+        for (let i = 1; i < prices.length; i++) {
+            if (buyPrice > prices[i]) {
+                buyPrice = prices[i];
+            }
+
+            profit = Math.max(profit, prices[i] - buyPrice);
+        }
+
+        return profit;    
+    };
