@@ -204,3 +204,20 @@ var maxSubArray = function(nums) {
     
     return res;    
 };
+
+//Leetcode 152. Maximum Product Subarray
+var maxSubArray = function(nums) {
+    let res = nums[0];  // Initialize the result (max sum) with the first element
+    let total = 0;      // Initialize the current sum to 0
+
+    for (let n of nums) {  // Loop through each element in the array
+        if (total < 0) {   // If the current sum is negative, reset it to 0
+            total = 0;
+        }
+
+        total += n;        // Add the current number to the current sum
+        res = Math.max(res, total); // Update the result if the current sum is greater
+    }
+    
+    return res;  // Return the maximum sum found
+};
