@@ -187,3 +187,20 @@ var maxSubArray = function(nums) {
     
     return res;    
 };
+
+// Leetcode 53. Maximum Subarray
+var maxSubArray = function(nums) {
+    let res = nums[0];
+    let total = 0;
+
+    for (let n of nums) {
+        if (total < 0) {
+            total = 0;
+        }
+
+        total += n;
+        res = Math.max(res, total);
+    }
+    
+    return res;    
+};
