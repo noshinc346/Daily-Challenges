@@ -221,3 +221,23 @@ var maxSubArray = function(nums) {
     
     return res;  // Return the maximum sum found
 };
+
+//Leetcode 153. Find Minimum in Rotated Sorted Array 
+function findMin(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (nums[mid] > nums[right]) {
+            // Minimum must be to the right of mid
+            left = mid + 1;
+        } else {
+            // Minimum is at mid or to the left of mid
+            right = mid;
+        }
+    }
+
+    return nums[left]; // or nums[right], since left == right
+}
