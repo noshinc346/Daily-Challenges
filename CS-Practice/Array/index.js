@@ -241,3 +241,25 @@ function findMin(nums) {
 
     return nums[left]; // or nums[right], since left == right
 }
+
+//Leetcode 162. Two Sum II 
+function twoSum(numbers, target) {
+    let left = 0;
+    let right = numbers.length - 1;
+
+    while (left < right) {
+        const sum = numbers[left] + numbers[right];
+
+        if (sum === target) {
+            // Return 1-based indices
+            return [left + 1, right + 1];
+        } else if (sum < target) {
+            left++; // Move right to increase the sum
+        } else {
+            right--; // Move left to decrease the sum
+        }
+    }
+
+    // Since the problem guarantees a solution, we won't hit this
+    return [];
+}
