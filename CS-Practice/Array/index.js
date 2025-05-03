@@ -263,3 +263,38 @@ function twoSum(numbers, target) {
     // Since the problem guarantees a solution, we won't hit this
     return [];
 }
+
+//Leetcode 15. 3Sum
+function threeSum(nums) {
+    nums.sort((a, b) => a - b);  // Step 1: Sort the array
+    const result = [];
+
+    for (let i = 0; i < nums.length - 2; i++) {
+        // Step 2: Skip duplicates for the fixed number
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        let left = i + 1;
+        let right = nums.length - 1;
+
+        while (left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
+
+            if (sum === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+                left++;
+                right--;
+
+                // Step 3: Skip duplicates for left and right
+                while (left < right && nums[left] === nums[left - 1]) left++;
+                while (left < right && nums[right] === nums[right + 1]) right--;
+
+            } else if (sum < 0) {
+                left++;  // Need a larger number
+            } else {
+                right--; // Need a smaller number
+            }
+        }
+    }
+
+    return result;
+}
