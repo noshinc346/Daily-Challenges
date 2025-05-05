@@ -20,3 +20,42 @@ var maxArea = function(height) {
 
     return maxWater;
 };
+
+//Leetcode 953. Verifying an Alien Dictionary 
+function isAlienSorted(words, order) {
+    const orderMap = {};
+
+    // Step 1: Build a mapping of character to its position in the alien order
+    for (let i = 0; i < order.length; i++) {
+        orderMap[order[i]] = i;
+    }
+
+    // Step 2: Compare adjacent words
+    for (let i = 0; i < words.length - 1; i++) {
+        const word1 = words[i];
+        const word2 = words[i + 1];
+
+        let foundDifference = false;
+
+        for (let j = 0; j < Math.max(word1.length, word2.length); j++) {
+            const char1 = word1[j];
+            const char2 = word2[j];
+
+            if (char1 !== char2) {
+                const pos1 = orderMap[char1] ?? -1;
+                const pos2 = orderMap[char2] ?? -1;
+
+                if (pos1 > pos2) return false;
+                foundDifference = true;
+                break;
+            }
+        }
+
+        // If no difference was found and word1 is longer, it's not sorted
+        if (!foundDifference && word1.length > word2.length) {
+            return false;
+        }
+    }
+
+    return true;
+}
