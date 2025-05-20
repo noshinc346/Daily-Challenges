@@ -298,3 +298,56 @@ function threeSum(nums) {
 
     return result;
 }
+
+//Leetcode 953. Verifying an Alien Dictionary 
+var isAlienSorted = function(words, order) {
+  // 1) Build the rank map
+  const rank = {};
+  for (let i = 0; i < order.length; i++) {
+    rank[order[i]] = i;
+  }
+
+  // 2) Compare each adjacent pair
+  for (let i = 0; i < words.length - 1; i++) {
+    if (!inCorrectOrder(words[i], words[i + 1], rank)) {
+      return false;
+    }
+  }
+
+  // 3) All good!
+  return true;
+};
+
+/**
+ * Returns true if w1 ≤ w2 in the alien lex order defined by rank.
+ */
+function inCorrectOrder(w1, w2, rank) {
+  const minLen = Math.min(w1.length, w2.length);
+
+  for (let i = 0; i < minLen; i++) {
+    const c1 = w1[i], c2 = w2[i];
+    if (c1 !== c2) {
+      // As soon as they differ, decide by their rank
+      return rank[c1] < rank[c2];
+    }
+  }
+
+  // All chars same up to minLen: shorter word must come first
+  return w1.length <= w2.length;
+}
+
+// ---- Test with the examples ----
+console.log(isAlienSorted(
+  ["hello","leetcode"],
+  "hlabcdefgijkmnopqrstuvwxyz"
+)); // true
+
+console.log(isAlienSorted(
+  ["word","world","row"],
+  "worldabcefghijkmnpqstuvxyz"
+)); // false
+
+console.log(isAlienSorted(
+  ["apple","app"],
+  "abcdefghijklmnopqrstuvwxyz"
+)); // false
