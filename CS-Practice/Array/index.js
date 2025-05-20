@@ -351,3 +351,47 @@ console.log(isAlienSorted(
   ["apple","app"],
   "abcdefghijklmnopqrstuvwxyz"
 )); // false
+
+//Leetcode 31. Next Permutation 
+var nextPermutation = function(nums) {
+  const n = nums.length;
+  // 1) Find the first index 'i' from the right where nums[i] < nums[i+1]
+  let i = n - 2;
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+    i--;
+  }
+  
+  // 2) If such an index exists, find the smallest element > nums[i] in the suffix
+  if (i >= 0) {
+    let j = n - 1;
+    while (nums[j] <= nums[i]) {
+      j--;
+    }
+    // 3) Swap pivot nums[i] with this successor nums[j]
+    [nums[i], nums[j]] = [nums[j], nums[i]];
+  }
+  
+  // 4) Reverse the suffix nums[i+1...end] to get the lowest order
+  reverse(nums, i + 1, n - 1);
+};
+
+function reverse(arr, left, right) {
+  while (left < right) {
+    [arr[left], arr[right]] = [arr[right], arr[left]];
+    left++;
+    right--;
+  }
+}
+
+// --- Tests ---
+let a1 = [1,2,3];
+nextPermutation(a1);
+console.log(a1); // [1,3,2]
+
+let a2 = [3,2,1];
+nextPermutation(a2);
+console.log(a2); // [1,2,3]
+
+let a3 = [1,1,5];
+nextPermutation(a3);
+console.log(a3); // [1,5,1]
