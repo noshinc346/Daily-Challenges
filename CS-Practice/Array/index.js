@@ -395,3 +395,46 @@ console.log(a2); // [1,2,3]
 let a3 = [1,1,5];
 nextPermutation(a3);
 console.log(a3); // [1,5,1]
+
+//Leetcode 34. Find First and Last Position of Element in Sorted Array
+function searchRange(nums, target) {
+  const n = nums.length;
+  if (n === 0) return [-1, -1];
+
+  // Find left boundary
+  let left = 0, right = n - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  // After loop, 'left' is the smallest index where nums[left] >= target
+  if (left >= n || nums[left] !== target) {
+    return [-1, -1];
+  }
+  const firstPos = left;
+
+  // Find right boundary
+  left = 0;
+  right = n - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (nums[mid] <= target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  // After loop, 'right' is the largest index where nums[right] <= target
+  const lastPos = right;
+
+  return [firstPos, lastPos];
+}
+
+// --- Examples ---
+console.log( searchRange([5,7,7,8,8,10], 8) ); // [3,4]
+console.log( searchRange([5,7,7,8,8,10], 6) ); // [-1,-1]
+console.log( searchRange([], 0) );             // [-1,-1]

@@ -124,3 +124,4 @@ let arr = [0,0,1,1,1,2,2,3,3,4];
 let k = removeDuplicates(arr);
 console.log(k);       // 5
 console.log(arr.slice(0, k)); // [0,1,2,3,4]
+
