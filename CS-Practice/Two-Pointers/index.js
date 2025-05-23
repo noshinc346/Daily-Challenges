@@ -103,3 +103,24 @@ console.log(a2); // [1,2,3]
 let a3 = [1,1,5];
 nextPermutation(a3);
 console.log(a3); // [1,5,1]
+
+
+//Leetcode 26. Remove Duplicates from Sorted Array
+function removeDuplicates(nums) {
+  if (nums.length === 0) return 0;
+  
+  let w = 1; // write pointer
+  for (let r = 1; r < nums.length; r++) {
+    if (nums[r] !== nums[r - 1]) {
+      nums[w] = nums[r];
+      w++;
+    }
+  }
+  return w;
+}
+
+// Example
+let arr = [0,0,1,1,1,2,2,3,3,4];
+let k = removeDuplicates(arr);
+console.log(k);       // 5
+console.log(arr.slice(0, k)); // [0,1,2,3,4]
