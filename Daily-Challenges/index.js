@@ -224,3 +224,26 @@
       //   which equals 25344.
       // - To compute the numeric value for an IP address, you first compute the value for each of the
       //   four 8-bit chunks (as described in the above hint), and add them together!
+
+
+    // 20. Valid Parentheses 
+    var isValid = function(s) {
+  const stack = [];
+  const mapping = {
+    ')': '(',
+    '}': '{',
+    ']': '['
+  };
+
+  for (const c of s) {
+    if (c === '(' || c === '{' || c === '[') {
+      stack.push(c);
+    } else {
+      if (!stack.length || stack.pop() !== mapping[c]) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
