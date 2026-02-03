@@ -279,4 +279,17 @@ var romanToInt = function(s) {
 //     Products
 // WHERE
 //     low_fats = 'Y' AND recyclable = 'Y'
-    
+
+//206. Reversed Linked list 
+var reverseList = function(head) {
+    let node = null;
+
+    while (head) {
+        const temp = head.next;
+        head.next = node;
+        node = head;
+        head = temp;
+    }
+
+    return node;    
+};
