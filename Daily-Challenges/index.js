@@ -271,3 +271,12 @@ var romanToInt = function(s) {
 
     return res + roman[s[s.length - 1]];    
 };
+
+// 1757. Recyclable and Low Fat Products MYSQL
+// SELECT
+//     product_id
+// FROM
+//     Products
+// WHERE
+//     low_fats = 'Y' AND recyclable = 'Y'
+    
