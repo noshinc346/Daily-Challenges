@@ -293,3 +293,13 @@ var reverseList = function(head) {
 
     return node;    
 };
+
+// 2558. Take Gifts from the Richest pile 
+var pickGifts = function(gifts, k) {
+    gifts.sort((a,b) => a - b);
+
+    for(let i = 0; i < k; i++) {
+      gifts[gifts.length - 1] = Math.floor(Math.sqrt(gifts[gifts.length - 1]));
+      gifts.sort((a,b) => a - b);
+    }
+};
